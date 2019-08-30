@@ -16,7 +16,7 @@ function setup(accessToken) {
 }
 
 export async function sendResetPasswordEmail(user) {
-  const from = 'Grand Photo Salon ' + '<' + process.env.GMAIL_ACCOUNT + '>';
+  const from = 'Grand Photo Salon  ' + '<' + process.env.GMAIL_ACCOUNT + '>';
   const OAuth2 = google.auth.OAuth2;
   const oauth2Client = new OAuth2(
     process.env.GOOGLE_API_CLIENT_ID,
