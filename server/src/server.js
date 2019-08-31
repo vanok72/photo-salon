@@ -19,7 +19,9 @@ mongoose.Promise = Promise;
 mongoose.set('useFindAndModify', false);
 mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true });
 
-const staticFiles = express.static(path.join(__dirname, '../../client/build'));
+const staticFiles = express.static(
+  path.join(__dirname, '../../../client/build'),
+);
 app.use(staticFiles);
 
 app.use('/api/auth', auth);
@@ -41,7 +43,7 @@ app.get('/*', (req, res) => {
         console.log(`User not found`);
       }
     });
-  res.sendFile(path.join(__dirname, '../../client/build/index.html'));
+  res.sendFile(path.join(__dirname, '../../../client/build/index.html'));
 });
 
 app.listen(process.env.PORT || 3000, () =>
