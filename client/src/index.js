@@ -12,8 +12,10 @@ import * as serviceWorker from './serviceWorker';
 import rootReducer from './rootReducer';
 import { fetchCurrentUserSuccess, fetchCurrentUserRequest } from './actions/users';
 import { localeSet } from './actions/locale';
+import { themeSet } from './actions/theme';
 import 'bootstrap/dist/css/bootstrap.css';
-import './index.less';
+
+import '../src/assets/less/index.less';
 import setAuthorizationHeader from './utils/setAuthorizationHeader';
 import rootSaga from './rootSaga';
 import history from './history';
@@ -28,6 +30,7 @@ sagaMiddlware.run(rootSaga);
 
 if (localStorage.photosalonJWT) {
   setAuthorizationHeader(localStorage.photosalonJWT);
+ 
   store.dispatch(fetchCurrentUserRequest());
 } else {
   store.dispatch(fetchCurrentUserSuccess({}));
@@ -35,6 +38,10 @@ if (localStorage.photosalonJWT) {
 
 if (localStorage.alhubLang) {
   store.dispatch(localeSet(localStorage.alhubLang));
+}
+
+if (localStorage.alhubTheme) {
+  store.dispatch(themeSet(localStorage.alhubTheme));
 }
 
 ReactDOM.render(

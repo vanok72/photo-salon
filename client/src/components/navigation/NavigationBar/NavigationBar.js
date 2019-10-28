@@ -8,6 +8,7 @@ import { Nav, Navbar, NavDropdown, Image } from 'react-bootstrap';
 import style from './NavigationBar.less';
 import { allBooksSelector } from '../../../reducers/books';
 import { setLocale } from '../../../actions/locale';
+import { setTheme } from '../../../actions/theme';
 
 const NavigationBar = ({ isAuthenticated, user, logout, hasBooks, setLocale }) => (
   <Navbar as="header" className={style.navvbar} variant="dark">
@@ -15,6 +16,13 @@ const NavigationBar = ({ isAuthenticated, user, logout, hasBooks, setLocale }) =
       <FormattedMessage id="nav_dashboard" defaultMessage="Dashboard" />
     </Navbar.Brand>
     <Nav className={[style.fullwidth, 'justify-content-end']}>
+    <a role="button" onClick={() => setTheme('light')}>
+        light
+      </a>
+      |
+      <a role="button" onClick={() => setTheme('dark')}>
+        dark
+      </a>
       <a role="button" onClick={() => setLocale('en')}>
         EN
       </a>
@@ -65,6 +73,7 @@ NavigationBar.propTypes = {
   hasBooks: PropTypes.bool.isRequired,
   logout: PropTypes.func.isRequired,
   setLocale: PropTypes.func.isRequired,
+  setTheme: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -77,5 +86,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { logout: actions.logout, setLocale },
+  { logout: actions.logout, setLocale, setTheme },
 )(NavigationBar);
