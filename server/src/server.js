@@ -27,7 +27,7 @@ app.use('/api/users', users);
 app.use('/api/books', books);
 
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '.index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
   // res.sendFile(path.join(__dirname, '../../../client/build/index.html'));
 });
 
