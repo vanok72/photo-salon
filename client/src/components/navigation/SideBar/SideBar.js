@@ -60,6 +60,12 @@ const SideBar = () => (
               Entry rules
             </Nav.Link>
           </Nav.Item>
+          <Nav.Item>
+            {' '}
+            <Nav.Link eventKey="9" as={Link} to="/Sponsors">
+               Sponsors
+            </Nav.Link>
+          </Nav.Item>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

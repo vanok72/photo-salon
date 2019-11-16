@@ -11,3 +11,5 @@ export const LOCALE_SET = 'LOCALE_SET';
 export const THEME_SET = 'THEME_SET';
 export const BOOKS_FETCHED = 'BOOKS_FETCHED';
 export const BOOKS_CREATED = 'BOOKS_CREATED';
+export const SPONSORS_FETCHED = 'SPONSORS_FETCHED';
+export const SPONSORS_CREATED = 'SPONSORS_CREATED';

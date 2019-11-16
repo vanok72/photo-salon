@@ -18,4 +18,9 @@ export default {
     fetchAll: () => axios.get('/api/books').then(res => res.data.books),
     create: book => axios.post('/api/books', { book }).then(res => res.data.book),
   },
+
+  sponsors: {
+    fetchAll: () => axios.get('/api/sponsors').then(res => res.data.sponsors),
+    create: sponsor => axios.post('/api/sponsors', { sponsor }).then(res => res.data.sponsor),
+  }
 };
