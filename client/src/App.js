@@ -21,6 +21,8 @@ import Contacts from './components/pages/SidebarMenu/Contacts';
 import CharactersPage from './components/pages/SidebarMenu/CharactersPage';
 import NewCharacterPage from './components/pages/SidebarMenu/NewCharacterPage';
 import Sponsors from './components/pages/SidebarMenu/Sponsors';
+import Collections from './components/pages/SidebarMenu/Collections';
+
 // -----right menu------
 import SignIn from './components/pages/NavbarMenu/SignIn';
 import ForgotPassword from './components/pages/NavbarMenu/ForgotPassword';
@@ -93,6 +95,12 @@ class App extends React.Component {
               <Route location={location} path="/Results" exact component={Results} />
               <Route location={location} path="/Contacts" exact component={Contacts} />
               <Route location={location} path="/Sponsors" exact component={Sponsors} />
+              <Route
+                location={location}
+                path="/Collections"
+                exact
+                component={Collections}
+              />
               <GuestRoute location={location} path="/SignIn" exact component={SignIn} />
               <GuestRoute
                 location={location}

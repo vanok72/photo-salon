@@ -63,7 +63,13 @@ const SideBar = () => (
           <Nav.Item>
             {' '}
             <Nav.Link eventKey="9" as={Link} to="/Sponsors">
-               Sponsors
+              Sponsors
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            {' '}
+            <Nav.Link eventKey="10" as={Link} to="/Collections">
+              Albums
             </Nav.Link>
           </Nav.Item>
         </Nav>

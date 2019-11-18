@@ -21,6 +21,13 @@ export default {
 
   sponsors: {
     fetchAll: () => axios.get('/api/sponsors').then(res => res.data.sponsors),
-    create: sponsor => axios.post('/api/sponsors', { sponsor }).then(res => res.data.sponsor),
-  }
+    create: sponsor =>
+      axios.post('/api/sponsors', { sponsor }).then(res => res.data.sponsor),
+  },
+
+  collections: {
+    fetchAll: () => axios.get('/api/collections').then(res => res.data.collections),
+    create: collection =>
+      axios.post('/api/collections', { collection }).then(res => res.data.collection),
+  },
 };

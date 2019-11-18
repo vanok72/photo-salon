@@ -10,6 +10,7 @@ import auth from './routes/auth';
 import users from './routes/users';
 import books from './routes/books';
 import sponsors from './routes/sponsors';
+import collections from './routes/collections';
 
 dotenv.config();
 const app = express();
@@ -27,6 +28,7 @@ app.use('/api/auth', auth);
 app.use('/api/users', users);
 app.use('/api/books', books);
 app.use('/api/sponsors', sponsors);
+app.use('/api/collections', collections);
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
