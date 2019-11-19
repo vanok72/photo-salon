@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import AddCollections from '../../forms/AddCollections/AddCollections';
 import { allCollectionsSelector } from '../../../reducers/collections';
-import { createCollection, fetchCollections } from '../../../actions/collections';
+import {
+  createCollection,
+  fetchCollections,
+  deleteCollection,
+} from '../../../actions/collections';
 import CollectionCard from '../../CollectionCard/CollectionCard';
 import { CardGroup } from 'react-bootstrap';
 
@@ -20,6 +24,8 @@ class Collections extends Component {
 
   submit = data => this.props.createCollection(data);
 
+  delete = id => this.props.deleteCollection(id);
+
   render() {
     const { collections } = this.props;
 
@@ -33,7 +39,8 @@ class Collections extends Component {
                   Source={collection.source}
                   Season={collection.season}
                   Title={collection.title}
-                  key={collection.season + collection.title}
+                  key={collection._id}
+                  onDeleteClick={() => this.delete(collection._id)}
                 />
               );
             })}
@@ -51,11 +58,13 @@ Collections.propTypes = {
   }).isRequired,
   createCollection: PropTypes.func.isRequired,
   fetchCollections: PropTypes.func.isRequired,
+  deleteCollection: PropTypes.func.isRequired,
   collections: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
       season: PropTypes.string.isRequired,
       source: PropTypes.string.isRequired,
+      _id: PropTypes.string.isRequired,
     }).isRequired,
   ).isRequired,
 };
@@ -68,5 +77,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { createCollection, fetchCollections },
+  { createCollection, fetchCollections, deleteCollection },
 )(Collections);

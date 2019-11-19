@@ -1,5 +1,5 @@
 import { normalize } from 'normalizr';
-import { COLLECTIONS_FETCHED, COLLECTIONS_CREATED } from '../types';
+import { COLLECTIONS_FETCHED, COLLECTIONS_CREATED, COLLECTIONS_DELETED } from '../types';
 import api from '../api';
 import { collectionSchema } from '../schemas';
 
@@ -12,6 +12,10 @@ const collectionsFetched = data => ({
 const collectionCreated = data => ({
   type: COLLECTIONS_CREATED,
   data,
+});
+
+const collectionDeleted = () => ({
+  type: COLLECTIONS_DELETED,
 });
 
 export const fetchCollections = () => dispatch =>
@@ -27,3 +31,8 @@ export const createCollection = data => dispatch =>
     .then(collection =>
       dispatch(collectionCreated(normalize(collection, collectionSchema))),
     );
+
+export const deleteCollection = id => dispatch => {
+  api.collections.delete(id);
+  dispatch(collectionDeleted());
+};

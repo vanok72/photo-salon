@@ -20,9 +20,8 @@ router.post('/', (req, res) => {
 });
 
 router.post('/delete', (req, res) => {
-  collection
-    .find({ userId: req.currentUser._id })
-    .then(collections => res.json({ collections }));
+  const { id } = req.body;
+  collection.remove({ _id: id }).then(() => res.json({}));
 });
 
 export default router;
