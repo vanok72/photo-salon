@@ -6,6 +6,7 @@ import characters from './reducers/characters';
 import locale from './reducers/locale';
 import theme from './reducers/theme';
 import formErrors from './reducers/formErrors';
+import sponsors from './reducers/sponsors';
 
 export default combineReducers({
   user,
@@ -15,4 +16,5 @@ export default combineReducers({
   locale,
   theme,
   formErrors,
+  sponsors,
 });
