@@ -14,7 +14,9 @@ import { fetchCurrentUserSuccess, fetchCurrentUserRequest } from './actions/user
 import { localeSet } from './actions/locale';
 import { themeSet } from './actions/theme';
 import 'bootstrap/dist/css/bootstrap.css';
-import * as _ from "lodash";
+import 'semantic-ui-css/semantic.min.css';
+
+import * as _ from 'lodash';
 
 import '../src/assets/less/index.less';
 import setAuthorizationHeader from './utils/setAuthorizationHeader';
@@ -31,7 +33,7 @@ sagaMiddlware.run(rootSaga);
 
 if (localStorage.photosalonJWT) {
   setAuthorizationHeader(localStorage.photosalonJWT);
- 
+
   store.dispatch(fetchCurrentUserRequest());
 } else {
   store.dispatch(fetchCurrentUserSuccess({}));

@@ -13,7 +13,9 @@ const CollectionCard = props => (
         </Card.Text>
         <ButtonToolbar>
           <Button variant="primary">View</Button>
-          <Button variant="secondary">Edit info</Button>
+          <Button variant="secondary" onClick={props.onUpdateClick}>
+            Edit info
+          </Button>
           <Button variant="danger" onClick={props.onDeleteClick}>
             Delete{' '}
           </Button>

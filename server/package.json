@@ -25,6 +25,7 @@
     "nodemailer": "^6.2.1",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
+    "semantic-ui-react": "^0.88.1",
     "xml2js": "^0.4.19"
   },
   "devDependencies": {
