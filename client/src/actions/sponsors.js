@@ -1,5 +1,5 @@
 import { normalize } from 'normalizr';
-import { SPONSORS_FETCHED, SPONSORS_CREATED } from '../types';
+import { SPONSORS_FETCHED, SPONSORS_CREATED, SPONSORS_DELETED } from '../types';
 import api from '../api';
 import { sponsorSchema } from '../schemas';
 
@@ -14,6 +14,10 @@ const sponsorCreated = data => ({
     data,
   });
 
+  const sponsorDeleted = () => ({
+    type: SPONSORS_DELETED,
+  });
+
 export const fetchSponsors = () => dispatch =>
   api.sponsors
     .fetchAll()
@@ -21,3 +25,8 @@ export const fetchSponsors = () => dispatch =>
 
 export const createSponsor = data => dispatch =>
   api.sponsors.create(data).then(sponsor => dispatch(sponsorCreated(normalize(sponsor, sponsorSchema))));
+
+export const deleteSponsor = id => dispatch => {
+  api.sponsors.delete(id);
+  dispatch(sponsorDeleted());
+}

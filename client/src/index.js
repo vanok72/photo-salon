@@ -14,7 +14,7 @@ import { fetchCurrentUserSuccess, fetchCurrentUserRequest } from './actions/user
 import { localeSet } from './actions/locale';
 import { themeSet } from './actions/theme';
 import 'bootstrap/dist/css/bootstrap.css';
-import 'semantic-ui-css/semantic.min.css';
+
 
 import * as _ from 'lodash';
 

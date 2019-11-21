@@ -23,6 +23,7 @@ export default {
     fetchAll: () => axios.get('/api/sponsors').then(res => res.data.sponsors),
     create: sponsor =>
       axios.post('/api/sponsors', { sponsor }).then(res => res.data.sponsor),
+    delete: id => axios.post('/api/sponsors/delete', { id }),
   },
 
   collections: {

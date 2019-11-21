@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import AddSponsors from '../../forms/AddSponsors/AddSponsors';
 
 import { allSponsorsSelector } from '../../../reducers/sponsors';
-import { createSponsor, fetchSponsors } from '../../../actions/sponsors';
+import { createSponsor, fetchSponsors, deleteSponsor } from '../../../actions/sponsors';
 import SponsorCard from '../../SponsorCard/SponsorCard';
 import { CardGroup } from 'react-bootstrap';
 
@@ -17,15 +17,18 @@ class Sponsors extends Component {
 
   submit = data => this.props.createSponsor(data);
 
+  delete = id => this.props.deleteSponsor(id);
+
   render() {
     const { sponsors } = this.props;
     const mappedSponsors =
       sponsors.length &&
       _.sortBy(sponsors, 'priority').map(sponsor => {
         return (
-          <SponsorCard Source={sponsor.source} Title={sponsor.title} key={sponsor._id} />
+          <SponsorCard Source={sponsor.source} Title={sponsor.title} key={sponsor._id} onDeleteClick={() => this.delete(sponsor._id)} />
         );
       });
+
 
     return (
       <div>
@@ -42,7 +45,7 @@ Sponsors.propTypes = {
     push: PropTypes.func.isRequired,
   }).isRequired,
   createSponsor: PropTypes.func.isRequired,
-
+  deleteSponsor: PropTypes.func.isRequired,
   fetchSponsors: PropTypes.func.isRequired,
   sponsors: PropTypes.arrayOf(
     PropTypes.shape({
@@ -62,5 +65,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { createSponsor, fetchSponsors },
+  { createSponsor, fetchSponsors, deleteSponsor },
 )(Sponsors);

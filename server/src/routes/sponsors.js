@@ -7,21 +7,21 @@ const router = express.Router();
 router.use(authenticate);
 
 router.get('/', (req, res) => {
-    sponsor.find({ userId: req.currentUser._id }).then(sponsors => res.json({ sponsors }));
+  sponsor
+    .find({ userId: req.currentUser._id })
+    .then(sponsors => res.json({ sponsors }));
 });
 
 router.post('/', (req, res) => {
-   sponsor
+  sponsor
     .create({ ...req.body.sponsor, userId: req.currentUser._id })
     .then(sponsor => res.json({ sponsor }))
     .catch(err => res.status(400).json({ errors: parseErrors(err.errors) }));
 });
 
 router.post('/delete', (req, res) => {
-    sponsor.find({ userId: req.currentUser._id }).then(sponsors => res.json({ sponsors }));
+  const { id } = req.body;
+  sponsor.remove({ _id: id }).then(() => res.json({}));
 });
-
-
-
 
 export default router;
