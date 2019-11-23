@@ -9,12 +9,13 @@ import {
   deleteCollection,
 } from '../../../actions/collections';
 import CollectionCard from '../../CollectionCard/CollectionCard';
-import { CardGroup } from 'react-bootstrap';
+import { CardGroup, Modal, Button } from 'react-bootstrap';
+import updateCollection from '../../Modals/updateCollection/UpdateCollection';
 
 class Collections extends Component {
-  // state = {
-  //   collections: [],
-  // };
+  state = {
+    show: false,
+  };
 
   async componentDidMount() {
     await this.onInit(this.props);
@@ -26,27 +27,41 @@ class Collections extends Component {
 
   delete = id => this.props.deleteCollection(id);
 
+  updateCollectionStepOne = id => this.props.updateCollection(id);
+
+  handleOpen = () => this.setState({ show: true });
+  handleClose = () => this.setState({ show: false });
+
   render() {
     const { collections } = this.props;
+    const { show } = this.state;
 
     return (
       <div>
-        <CardGroup>
-          {collections.length &&
-            collections.map(collection => {
-              return (
-                <CollectionCard
-                  Source={collection.source}
-                  Season={collection.season}
-                  Title={collection.title}
-                  key={collection._id}
-                  onDeleteClick={() => this.delete(collection._id)}
-                />
-              );
-            })}
-        </CardGroup>
-        <h4>ADD YOUR NEW ALBUM HERE!</h4>
-        <AddCollections submit={this.submit} />
+        <div>
+          <CardGroup>
+            {collections.length &&
+              collections.map(collection => {
+                return (
+                  <CollectionCard
+                    Source={collection.source}
+                    Season={collection.season}
+                    Title={collection.title}
+                    key={collection._id}
+                    onDeleteClick={() => this.delete(collection._id)}
+                    onUpdateClick={() => this.updateCollectionStepOne(collection._id)}
+                  />
+                );
+              })}
+          </CardGroup>
+          <h4>ADD YOUR NEW ALBUM HERE!</h4>
+          <AddCollections submit={this.submit} />
+        </div>
+        <div>
+          <Button variant="primary" onClick={this.handleOpen}>
+            Launch demo modal
+          </Button>
+        </div>
       </div>
     );
   }
@@ -59,6 +74,7 @@ Collections.propTypes = {
   createCollection: PropTypes.func.isRequired,
   fetchCollections: PropTypes.func.isRequired,
   deleteCollection: PropTypes.func.isRequired,
+  updateCollection: PropTypes.func.isRequired,
   collections: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
@@ -77,5 +93,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { createCollection, fetchCollections, deleteCollection },
+  { createCollection, fetchCollections, deleteCollection, updateCollection },
 )(Collections);

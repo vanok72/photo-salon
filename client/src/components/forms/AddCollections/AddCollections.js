@@ -4,6 +4,7 @@ import { Form, Button, Alert } from 'react-bootstrap';
 import Loader from '../../Loader/Loader';
 import styles from './AddCollections.less';
 
+
 class AddCollections extends React.Component {
   state = {
     data: {
@@ -31,8 +32,9 @@ class AddCollections extends React.Component {
       this.setState({ loading: true });
       this.props
         .submit(this.state.data)
-        .catch(err => this.setState({ errors: err.response.data.errors, loading: false }))
-        .then(() => this.setState({ loading: false }));
+        .catch(err =>
+          this.setState({ errors: err.response.data.errors, loading: false }),
+        );
     }
   };
 

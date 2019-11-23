@@ -25,6 +25,14 @@ export const fetchCollections = () => dispatch =>
       dispatch(collectionsFetched(normalize(collections, [collectionSchema]))),
     );
 
+export const updateCollections = id => dispatch =>
+  api.collections
+    .find()({ _id: id })
+    .fetch()
+    .then(collection =>
+      dispatch(collectionsFetched(normalize(collection, [collectionSchema]))),
+    );
+
 export const createCollection = data => dispatch =>
   api.collections
     .create(data)
