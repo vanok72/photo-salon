@@ -3,7 +3,7 @@ import {
   COLLECTIONS_FETCHED,
   COLLECTIONS_CREATED,
   COLLECTIONS_DELETED,
-  COLLECTIONS_UPDATED,
+  COLLECTIONS_FETCHED_BY_ID,
 } from '../types';
 
 export default function collections(state = {}, action = {}) {
@@ -11,7 +11,7 @@ export default function collections(state = {}, action = {}) {
     case COLLECTIONS_DELETED:
       return state;
     case COLLECTIONS_FETCHED:
-    case COLLECTIONS_UPDATED:
+    case COLLECTIONS_FETCHED_BY_ID:
     case COLLECTIONS_CREATED:
       return { ...state, ...action.data.entities.collections };
     default:

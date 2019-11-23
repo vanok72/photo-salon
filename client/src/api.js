@@ -31,6 +31,9 @@ export default {
     create: collection =>
       axios.post('/api/collections', { collection }).then(res => res.data.collection),
     delete: id => axios.post('/api/collections/delete', { id }),
-    update: () => axios.get('/api/collections').then(res => res.data.collections),
+    fetchById: id =>
+      axios
+        .get('/api/collections/getCollectionByID', { id })
+        .then(res => res.data.collection),
   },
 };

@@ -37,6 +37,8 @@ import NewBookPage from './components/pages/NewBookPage';
 
 import messages from './localization/messages';
 import { fetchCurrentUserRequest } from './actions/users';
+import NewCollectionPage from './components/pages/SidebarMenu/NewCollectionPage';
+import EditCollectionPage from './components/pages/SidebarMenu/EditCollectionPage';
 
 class App extends React.Component {
   componentDidMount() {
@@ -82,6 +84,18 @@ class App extends React.Component {
                 path="/books/new"
                 exact
                 component={NewBookPage}
+              />
+              <UserRoute
+                location={location}
+                path="/Collections/new"
+                exact
+                component={NewCollectionPage}
+              />
+              <UserRoute
+                location={location}
+                path="/Collections/edit/:id"
+                exact
+                component={EditCollectionPage}
               />
               <Route
                 location={location}

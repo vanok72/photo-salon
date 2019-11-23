@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Card, ButtonToolbar } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const CollectionCard = props => (
   <div>
@@ -13,7 +14,12 @@ const CollectionCard = props => (
         </Card.Text>
         <ButtonToolbar>
           <Button variant="primary">View</Button>
-          <Button variant="secondary" onClick={props.onUpdateClick}>
+          <Button
+            as={Link}
+            to={{ pathname: '/Collections/edit/:', query: { id: props.id } }}
+            variant="outline-secondary"
+            type="button"
+          >
             Edit info
           </Button>
           <Button variant="danger" onClick={props.onDeleteClick}>

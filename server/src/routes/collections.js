@@ -12,6 +12,13 @@ router.get('/', (req, res) => {
     .then(collections => res.json({ collections }));
 });
 
+router.get('/getCollectionByID', (req, res) => {
+  const { id } = req.body;
+  collection
+    .findOne({ userId: req.currentUser._id, _id: id })
+    .then(collection => res.json({ collection }));
+});
+
 router.post('/', (req, res) => {
   collection
     .create({ ...req.body.collection, userId: req.currentUser._id })

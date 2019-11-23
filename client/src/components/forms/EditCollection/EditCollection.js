@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button, Alert } from 'react-bootstrap';
 import Loader from '../../Loader/Loader';
-import styles from './AddCollections.less';
+import styles from './EditCollection.less';
 
-class AddCollections extends React.Component {
+class EditCollection extends React.Component {
   state = {
     data: {
       title: '',
@@ -44,6 +44,9 @@ class AddCollections extends React.Component {
     if (!data.season) errors.season = 'Invalid season';
     return errors;
   };
+  componentWillReceiveProps() {
+    this.setState({ data: this.props.data });
+  }
 
   render() {
     const { data, errors, loading } = this.state;
@@ -104,8 +107,8 @@ class AddCollections extends React.Component {
   }
 }
 
-AddCollections.propTypes = {
+EditCollection.propTypes = {
   submit: PropTypes.func.isRequired,
 };
 
-export default AddCollections;
+export default EditCollection;

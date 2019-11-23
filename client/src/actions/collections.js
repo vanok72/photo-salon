@@ -9,6 +9,11 @@ const collectionsFetched = data => ({
   data,
 });
 
+const collectionFetchedById = data => ({
+  type: COLLECTIONS_FETCHED,
+  data,
+});
+
 const collectionCreated = data => ({
   type: COLLECTIONS_CREATED,
   data,
@@ -25,12 +30,11 @@ export const fetchCollections = () => dispatch =>
       dispatch(collectionsFetched(normalize(collections, [collectionSchema]))),
     );
 
-export const updateCollections = id => dispatch =>
+export const fetchCollectionById = id => dispatch =>
   api.collections
-    .find()({ _id: id })
-    .fetch()
+    .fetchById(id)
     .then(collection =>
-      dispatch(collectionsFetched(normalize(collection, [collectionSchema]))),
+      dispatch(collectionFetchedById(normalize(collection, [collectionSchema]))),
     );
 
 export const createCollection = data => dispatch =>
