@@ -1,5 +1,10 @@
 import { normalize } from 'normalizr';
-import { COLLECTIONS_FETCHED, COLLECTIONS_CREATED, COLLECTIONS_DELETED } from '../types';
+import {
+  COLLECTIONS_FETCHED,
+  COLLECTIONS_CREATED,
+  COLLECTIONS_DELETED,
+  COLLECTIONS_FETCHED_BY_ID,
+} from '../types';
 import api from '../api';
 import { collectionSchema } from '../schemas';
 
@@ -10,7 +15,7 @@ const collectionsFetched = data => ({
 });
 
 const collectionFetchedById = data => ({
-  type: COLLECTIONS_FETCHED,
+  type: COLLECTIONS_FETCHED_BY_ID,
   data,
 });
 
@@ -23,6 +28,11 @@ const collectionDeleted = () => ({
   type: COLLECTIONS_DELETED,
 });
 
+export const setLocale = lang => dispatch => {
+  localStorage.alhubLang = lang;
+  dispatch(localeSet(lang));
+};
+
 export const fetchCollections = () => dispatch =>
   api.collections
     .fetchAll()
@@ -34,7 +44,7 @@ export const fetchCollectionById = id => dispatch =>
   api.collections
     .fetchById(id)
     .then(collection =>
-      dispatch(collectionFetchedById(normalize(collection, [collectionSchema]))),
+      dispatch(collectionFetchedById(normalize(collection, collectionSchema))),
     );
 
 export const createCollection = data => dispatch =>

@@ -16,7 +16,8 @@ const CollectionCard = props => (
           <Button variant="primary">View</Button>
           <Button
             as={Link}
-            to={{ pathname: '/Collections/edit/:', query: { id: props.id } }}
+            // to={{ pathname: '/Collections/edit/:', query: { id: props.id } }}
+            to={`/Collections/edit/${props.Id}`}
             variant="outline-secondary"
             type="button"
           >
@@ -35,6 +36,7 @@ CollectionCard.propTypes = {
   Season: PropTypes.string.isRequired,
   Source: PropTypes.string.isRequired,
   Title: PropTypes.string.isRequired,
+  Id: PropTypes.string.isRequired,
   onDeleteClick: PropTypes.func.isRequired,
 };
 

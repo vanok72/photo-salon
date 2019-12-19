@@ -13,10 +13,19 @@ router.get('/', (req, res) => {
 });
 
 router.get('/getCollectionByID', (req, res) => {
-  const { id } = req.body;
+  const { id } = req.query;
+
   collection
     .findOne({ userId: req.currentUser._id, _id: id })
-    .then(collection => res.json({ collection }));
+    .then(collection => {
+      if (collection) {
+        res.json({ collection });
+      } else {
+        res
+          .status(400)
+          .json({ errors: { global: 'There is no collection with such id' } });
+      }
+    });
 });
 
 router.post('/', (req, res) => {

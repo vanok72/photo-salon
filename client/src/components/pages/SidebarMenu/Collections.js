@@ -45,6 +45,7 @@ class Collections extends Component {
                     Season={collection.season}
                     Title={collection.title}
                     key={collection._id}
+                    Id={collection._id}
                     onDeleteClick={() => this.delete(collection._id)}
                     onUpdateClick={() => this.createCollection(collection._id)}
                   />

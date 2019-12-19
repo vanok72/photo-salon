@@ -33,7 +33,7 @@ export default {
     delete: id => axios.post('/api/collections/delete', { id }),
     fetchById: id =>
       axios
-        .get('/api/collections/getCollectionByID', { id })
+        .get(`/api/collections/getCollectionByID?id=${id}`)
         .then(res => res.data.collection),
   },
 };
